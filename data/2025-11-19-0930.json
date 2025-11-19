@@ -1,0 +1,29 @@
+{
+  "timestamp": "2025-11-19T09:30:00-05:00",
+  "slot": "morning",
+  "bedtime": "23:45",
+  "wake_time": "06:45",
+  "night_wakings": [
+    {
+      "time": "unknown",
+      "duration_minutes": 5
+    }
+  ],
+  "meals": [
+    {
+      "type": "dinner",
+      "time": "18:15",
+      "foods": ["meatballs with parmesan cheese", "homemade red sauce (tomato seeds and skins removed)", "homemade sourdough", "red wine"]
+    },
+    {
+      "type": "snack",
+      "time": "22:40",
+      "foods": ["1/2 piece homemade banana bread"]
+    }
+  ],
+  "exercise": "none",
+  "stretching": "none",
+  "pain_level": 5,
+  "headache_type": "tension headache",
+  "aura": "slightly blurry eyes"
+}
