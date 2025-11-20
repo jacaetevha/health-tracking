@@ -14,9 +14,24 @@ if ! command -v ruby &> /dev/null; then
     exit 1
 fi
 
-# Check if Claude Code is available
-if ! command -v claude &> /dev/null; then
-    echo "Error: Claude Code CLI not found. Please install it first."
+# Find Claude Code CLI
+CLAUDE_CMD=""
+if command -v claude &> /dev/null; then
+    CLAUDE_CMD="claude"
+else
+    # Search in ~/.local for the latest version (including symlinks)
+    if [ -d "$HOME/.local" ]; then
+        CLAUDE_CMD=$(find "$HOME/.local" -name claude \( -type f -o -type l \) 2>/dev/null | sort -V | tail -1)
+    fi
+
+    # If not found, check /usr/local/bin
+    if [ -z "$CLAUDE_CMD" ] && [ -e "/usr/local/bin/claude" ]; then
+        CLAUDE_CMD="/usr/local/bin/claude"
+    fi
+fi
+
+if [ -z "$CLAUDE_CMD" ]; then
+    echo "Error: Claude Code CLI not found. Please check installation."
     exit 1
 fi
 
@@ -43,4 +58,4 @@ echo "---"
 
 # Run the Claude Code slash command
 # Note: This will open an interactive session
-claude /track-headache
+"$CLAUDE_CMD" /track-headache

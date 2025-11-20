@@ -1,0 +1,26 @@
+{
+  "timestamp": "2025-11-19T16:30:00-05:00",
+  "slot": "afternoon",
+  "meals": [
+    {
+      "type": "breakfast",
+      "time": "09:20",
+      "foods": ["slice of homemade banana bread"]
+    },
+    {
+      "type": "lunch",
+      "time": "13:00",
+      "foods": ["one egg", "4 oz. cooked steak"]
+    },
+    {
+      "type": "snack",
+      "time": "17:30",
+      "foods": ["a few multigrain chips"]
+    }
+  ],
+  "exercise": "little walking",
+  "stretching": "none",
+  "pain_level": 6,
+  "headache_type": "tension headache",
+  "aura": "slight blurry vision"
+}
