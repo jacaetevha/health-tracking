@@ -1,0 +1,29 @@
+{
+  "timestamp": "2025-11-23T09:30:00-05:00",
+  "slot": "morning",
+  "bedtime": "23:20",
+  "wake_time": "07:45",
+  "night_wakings": [
+    {
+      "time": "04:20",
+      "duration_minutes": 5
+    }
+  ],
+  "meals": [
+    {
+      "type": "dinner",
+      "timestamp": "2025-11-22T18:00:00-05:00",
+      "foods": ["pot roast with red onions and julienne carrots", "red wine (1 glass)"]
+    },
+    {
+      "type": "breakfast",
+      "timestamp": "2025-11-23T09:20:00-05:00",
+      "foods": ["Ezekiel bread English muffin"]
+    }
+  ],
+  "exercise": "none",
+  "stretching": "none",
+  "pain_level": 5,
+  "headache_type": "tension headache",
+  "aura": "none"
+}

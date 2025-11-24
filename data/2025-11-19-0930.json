@@ -12,12 +12,12 @@
   "meals": [
     {
       "type": "dinner",
-      "time": "18:15",
+      "timestamp": "2025-11-18T18:15:00-05:00",
       "foods": ["meatballs with parmesan cheese", "homemade red sauce (tomato seeds and skins removed)", "homemade sourdough", "red wine"]
     },
     {
       "type": "snack",
-      "time": "22:40",
+      "timestamp": "2025-11-18T22:40:00-05:00",
       "foods": ["1/2 piece homemade banana bread"]
     }
   ],

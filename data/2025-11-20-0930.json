@@ -12,12 +12,12 @@
   "meals": [
     {
       "type": "dinner",
-      "time": "20:00",
+      "timestamp": "2025-11-19T20:00:00-05:00",
       "foods": ["chinese spicy chicken (very salty, probably MSG)"]
     },
     {
       "type": "snack",
-      "time": "23:00",
+      "timestamp": "2025-11-19T23:00:00-05:00",
       "foods": ["1/2 glass prosecco"]
     }
   ],

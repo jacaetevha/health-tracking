@@ -1,0 +1,21 @@
+{
+  "timestamp": "2025-11-22T16:30:00-05:00",
+  "slot": "afternoon",
+  "meals": [
+    {
+      "type": "breakfast",
+      "timestamp": "2025-11-22T11:45:00-05:00",
+      "foods": ["4 sausage links", "1 piece sourdough bread"]
+    },
+    {
+      "type": "drink",
+      "timestamp": "2025-11-22T13:00:00-05:00",
+      "foods": ["IPA"]
+    }
+  ],
+  "exercise": "none",
+  "stretching": "none",
+  "pain_level": 5,
+  "headache_type": "tension headache",
+  "aura": "none"
+}
