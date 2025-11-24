@@ -73,12 +73,12 @@ You are helping the user track their headaches and migraines by collecting daily
      "meals": [
        {
          "type": "dinner",
-         "time": "18:30",
+         "timestamp": "2025-11-13T18:30:00-05:00",
          "foods": ["chicken", "rice", "vegetables"]
        },
        {
          "type": "snack",
-         "time": "22:00",
+         "timestamp": "2025-11-13T22:00:00-05:00",
          "foods": ["crackers", "cheese"]
        }
      ],
