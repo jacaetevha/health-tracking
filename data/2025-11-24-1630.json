@@ -1,0 +1,16 @@
+{
+  "timestamp": "2025-11-24T16:30:00-05:00",
+  "slot": "afternoon",
+  "meals": [
+    {
+      "type": "breakfast",
+      "timestamp": "2025-11-24T11:55:00-05:00",
+      "foods": ["yogurt", "granola"]
+    }
+  ],
+  "exercise": "pull-ups",
+  "stretching": "none",
+  "pain_level": 5,
+  "headache_type": "tension headache",
+  "aura": "none"
+}

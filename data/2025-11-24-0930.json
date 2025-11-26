@@ -1,0 +1,29 @@
+{
+  "timestamp": "2025-11-24T09:30:00-05:00",
+  "slot": "morning",
+  "bedtime": "00:40",
+  "wake_time": "07:35",
+  "night_wakings": [],
+  "meals": [
+    {
+      "type": "dinner",
+      "timestamp": "2025-11-23T18:30:00-05:00",
+      "foods": ["chicken strips"]
+    },
+    {
+      "type": "dessert",
+      "timestamp": "2025-11-23T20:00:00-05:00",
+      "foods": ["chocolate ice cream"]
+    },
+    {
+      "type": "drink",
+      "timestamp": "2025-11-24T08:45:00-05:00",
+      "foods": ["coffee"]
+    }
+  ],
+  "exercise": "some pull-ups",
+  "stretching": "none",
+  "pain_level": 6,
+  "headache_type": "tension headache",
+  "aura": "none"
+}

@@ -1,0 +1,17 @@
+{
+  "timestamp": "2025-11-23T16:30:00-05:00",
+  "slot": "afternoon",
+  "meals": [
+    {
+      "type": "lunch",
+      "timestamp": "2025-11-23T12:45:00-05:00",
+      "foods": ["burger", "a few fries"]
+    }
+  ],
+  "exercise": "none",
+  "stretching": "none",
+  "pain_level": 4,
+  "headache_type": "tension headache",
+  "aura": "none",
+  "notes": "pain increased to level 5 at 21:00"
+}
