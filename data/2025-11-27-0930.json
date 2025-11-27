@@ -1,0 +1,29 @@
+{
+  "timestamp": "2025-11-27T09:30:00-05:00",
+  "slot": "morning",
+  "bedtime": "23:23",
+  "wake_time": "07:34",
+  "night_wakings": [
+    {"time": "01:11", "duration_minutes": 5},
+    {"time": "03:40", "duration_minutes": 5},
+    {"time": "05:20", "duration_minutes": 5}
+  ],
+  "coffee": true,
+  "meals": [
+    {
+      "type": "dinner",
+      "timestamp": "2025-11-26T18:20:00-05:00",
+      "foods": ["sirloin steak", "red onions", "garlic"]
+    },
+    {
+      "type": "snack",
+      "timestamp": "2025-11-26T20:00:00-05:00",
+      "foods": ["chocolate ice cream"]
+    }
+  ],
+  "exercise": "light weights",
+  "stretching": "minor stretching of back",
+  "pain_level": 5,
+  "headache_type": "tension headache",
+  "aura": "none"
+}
