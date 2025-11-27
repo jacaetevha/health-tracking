@@ -59,3 +59,4 @@ echo "---"
 # Run the Claude Code slash command
 # Note: This will open an interactive session
 "$CLAUDE_CMD" /track-headache
+
