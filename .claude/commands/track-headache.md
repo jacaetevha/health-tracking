@@ -6,8 +6,9 @@ You are helping the user track their headaches and migraines by collecting daily
 
 - Data is stored in JSON format in the `data/` subdirectory
 - Filename format: `YYYY-MM-DD-HHmm.json` (e.g., `2025-11-14-0930.json`)
-- The user needs to track: meals, timing, sleep, exercise, stretching, pain levels, headache types, and auras
+- The user needs to track: meals, timing, sleep, exercise, stretching, pain levels, headache types, auras, water intake, and coffee consumption
 - There are two daily check-ins: 9:30 AM and 4:30 PM (America/Detroit timezone)
+- **User's baseline habits**: Drinks 1.2 liters of water daily with Celtic sea salt crystals; has 12 oz. coffee every morning
 
 ## Your Task
 
@@ -39,6 +40,7 @@ You are helping the user track their headaches and migraines by collecting daily
    - How many times did you wake up during the night?
    - For each waking, approximately how long were you awake?
    - What time did you wake up this morning?
+   - Did you have your usual 12 oz. of coffee this morning? (assume yes unless user indicates otherwise)
    - What did you eat for dinner last night?
    - What time did you eat dinner?
    - Did you have any late-night snacks? If so, what and when?
@@ -54,11 +56,13 @@ You are helping the user track their headaches and migraines by collecting daily
      - How many times did you wake up during the night?
      - For each waking, approximately how long were you awake?
      - What time did you wake up this morning?
+     - Did you have your usual 12 oz. of coffee this morning? (assume yes unless user indicates otherwise)
    - What did you eat for breakfast? What time?
    - What did you eat for lunch? What time?
    - What snacks or drinks have you had today?
    - What exercising have you done today?
    - What stretching have you done today?
+   - Have you drunk at least 1.2 liters of water today? (assume yes unless user indicates otherwise)
    - What is your current pain level? (0-10, where 10 is the worst)
    - What type of headache does it feel like? (Options: nothing, tension headache, migraine, cluster headache, sinus headache, ice pick headache, other)
    - Are you experiencing auras? If so, describe them (e.g., the typical "smokey bowling alley" visual distortion, or something different)
@@ -74,6 +78,7 @@ You are helping the user track their headaches and migraines by collecting daily
        {"time": "02:30", "duration_minutes": 15},
        {"time": "05:00", "duration_minutes": 10}
      ],
+     "coffee": true or false,
      "meals": [
        {
          "type": "dinner",
@@ -88,11 +93,16 @@ You are helping the user track their headaches and migraines by collecting daily
      ],
      "exercise": "30 min walk, 20 min weights",
      "stretching": "10 min yoga",
+     "water_intake_adequate": true or false,
      "pain_level": 3,
      "headache_type": "tension headache",
      "aura": "none" or "smokey bowling alley visuals" or description
    }
    ```
+
+   **Field notes:**
+   - `coffee`: Include in all entries (morning and afternoon). Default to true unless user indicates they skipped it.
+   - `water_intake_adequate`: Include only in afternoon entries. Default to true unless user indicates they fell short of 1.2 liters.
 
 6. **Filename**: Save as `data/YYYY-MM-DD-HHmm.json` where the timestamp reflects the check-in time (not creation time if retroactive)
 
