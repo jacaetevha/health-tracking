@@ -4,6 +4,7 @@
   "bedtime": "00:40",
   "wake_time": "07:35",
   "night_wakings": [],
+  "coffee": true,
   "meals": [
     {
       "type": "dinner",

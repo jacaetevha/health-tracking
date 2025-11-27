@@ -9,6 +9,7 @@
       "duration_minutes": 20
     }
   ],
+  "coffee": true,
   "meals": [
     {
       "type": "dinner",
