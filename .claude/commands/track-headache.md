@@ -12,13 +12,17 @@ You are helping the user track their headaches and migraines by collecting daily
 ## Your Task
 
 1. **Check for existing entries**: Look in the `data/` directory for recent entries
-   - Determine current date/time in America/Detroit timezone
+   - Determine current date/time in America/Detroit timezone using `TZ='America/Detroit' date '+%Y-%m-%d %H:%M:%S %Z (%A)'`
+   - **CRITICAL**: When you run the date command, you MUST extract and use the day of week from the output (shown in parentheses at the end)
+   - For each date you reference, calculate the correct day of the week using the date command with that specific date
    - Check if an entry exists within 1.5 hours of now
    - If yes, inform the user and ask if they want to create another entry anyway
 
 2. **Check for missed entries**:
    - Identify any missed check-ins from previous days (9:30 AM or 4:30 PM slots)
+   - **CRITICAL**: For each missed date, use the date command to get the correct day of week: `TZ='America/Detroit' date -d 'YYYY-MM-DD' '+%A'`
    - On Mondays, include the previous weekend
+   - When presenting missed entries to the user, ALWAYS include the correct day of week (e.g., "November 25th (Tuesday)")
    - Ask the user if they want to fill in missed entries or skip them
    - If they want to fill them in, process each missed entry sequentially
 

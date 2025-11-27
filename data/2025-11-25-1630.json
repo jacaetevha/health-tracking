@@ -1,0 +1,21 @@
+{
+  "timestamp": "2025-11-25T16:30:00-05:00",
+  "slot": "afternoon",
+  "meals": [
+    {
+      "type": "breakfast",
+      "timestamp": "2025-11-25T11:30:00-05:00",
+      "foods": ["Ezekiel bread french toast", "chicken sausage"]
+    },
+    {
+      "type": "snack",
+      "timestamp": "2025-11-25T15:30:00-05:00",
+      "foods": ["yogurt with granola"]
+    }
+  ],
+  "exercise": "none",
+  "stretching": "none",
+  "pain_level": 6,
+  "headache_type": "stabbing pain from lower back right of head to upper left front above eye",
+  "aura": "none"
+}

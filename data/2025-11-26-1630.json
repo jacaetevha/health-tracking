@@ -1,0 +1,21 @@
+{
+  "timestamp": "2025-11-26T16:30:00-05:00",
+  "slot": "afternoon",
+  "meals": [
+    {
+      "type": "breakfast",
+      "timestamp": "2025-11-26T09:30:00-05:00",
+      "foods": ["sourdough toast", "pork sausage links"]
+    },
+    {
+      "type": "lunch",
+      "timestamp": "2025-11-26T12:30:00-05:00",
+      "foods": ["kobe beef stir-fried rice"]
+    }
+  ],
+  "exercise": "none",
+  "stretching": "none",
+  "pain_level": 8,
+  "headache_type": "stabbing pain from lower back right of head to upper left front above eye",
+  "aura": "none"
+}
