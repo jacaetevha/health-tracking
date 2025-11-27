@@ -62,14 +62,97 @@ def calculate_summary(data)
   waking_counts = data.map { |e| e['night_wakings']&.length || 0 }
   avg_wakings = waking_counts.empty? ? 'N/A' : (waking_counts.sum / waking_counts.length.to_f).round(1)
 
+  # Possible triggers
+  triggers = analyze_triggers(data)
+
   {
     total_entries: total_entries,
     avg_sleep: avg_sleep,
     avg_pain: avg_pain,
     coffee_days: "#{coffee_days}/#{total_entries}",
     common_headache: common_headache,
-    avg_wakings: avg_wakings
+    avg_wakings: avg_wakings,
+    triggers: triggers
   }
+end
+
+def analyze_triggers(data)
+  # Only consider entries with pain levels (exclude nil)
+  painful_entries = data.select { |e| e['pain_level'] && e['pain_level'] > 0 }
+  return [] if painful_entries.empty?
+
+  triggers = []
+
+  # Analyze coffee correlation
+  coffee_with_pain = painful_entries.count { |e| e['coffee'] }
+  coffee_pain_rate = (coffee_with_pain.to_f / painful_entries.length * 100).round(1)
+  all_coffee_rate = (data.count { |e| e['coffee'] }.to_f / data.length * 100).round(1)
+
+  if coffee_pain_rate > all_coffee_rate * 1.2 && coffee_with_pain >= 3
+    triggers << {
+      name: 'Coffee',
+      correlation: "#{coffee_pain_rate}% of painful days",
+      confidence: coffee_with_pain >= 5 ? 'high' : 'medium'
+    }
+  end
+
+  # Analyze sleep correlation
+  sleep_on_painful_days = painful_entries.map { |e| calculate_sleep_hours(e['bedtime'], e['wake_time']) }.compact
+  unless sleep_on_painful_days.empty?
+    avg_sleep_painful = (sleep_on_painful_days.sum / sleep_on_painful_days.length.to_f).round(1)
+    all_sleep = data.map { |e| calculate_sleep_hours(e['bedtime'], e['wake_time']) }.compact
+    avg_sleep_all = all_sleep.empty? ? 0 : (all_sleep.sum / all_sleep.length.to_f).round(1)
+
+    if avg_sleep_painful < avg_sleep_all - 0.5
+      triggers << {
+        name: 'Insufficient Sleep',
+        correlation: "Avg #{avg_sleep_painful}h on painful days vs #{avg_sleep_all}h overall",
+        confidence: sleep_on_painful_days.length >= 5 ? 'high' : 'medium'
+      }
+    end
+  end
+
+  # Analyze night wakings correlation
+  wakings_on_painful_days = painful_entries.map { |e| e['night_wakings']&.length || 0 }
+  unless wakings_on_painful_days.empty?
+    avg_wakings_painful = (wakings_on_painful_days.sum / wakings_on_painful_days.length.to_f).round(1)
+    all_wakings = data.map { |e| e['night_wakings']&.length || 0 }
+    avg_wakings_all = (all_wakings.sum / all_wakings.length.to_f).round(1)
+
+    if avg_wakings_painful > avg_wakings_all * 1.3 && avg_wakings_painful > 0.5
+      triggers << {
+        name: 'Disrupted Sleep',
+        correlation: "Avg #{avg_wakings_painful} wakings on painful days vs #{avg_wakings_all} overall",
+        confidence: wakings_on_painful_days.length >= 5 ? 'high' : 'medium'
+      }
+    end
+  end
+
+  # Analyze common foods on painful days
+  food_counts = Hash.new(0)
+  painful_entries.each do |entry|
+    entry['meals']&.each do |meal|
+      meal['foods']&.each do |food|
+        food_counts[food.downcase] += 1
+      end
+    end
+  end
+
+  # Find foods that appear frequently on painful days
+  frequent_foods = food_counts.select { |_, count| count >= 3 }
+                              .sort_by { |_, count| -count }
+                              .first(3)
+
+  frequent_foods.each do |food, count|
+    percentage = (count.to_f / painful_entries.length * 100).round(1)
+    triggers << {
+      name: food.capitalize,
+      correlation: "Present on #{count} painful days (#{percentage}%)",
+      confidence: count >= 5 ? 'medium' : 'low'
+    }
+  end
+
+  triggers.sort_by { |t| t[:confidence] == 'high' ? 0 : t[:confidence] == 'medium' ? 1 : 2 }
 end
 
 def get_pain_level_color(level)
@@ -81,6 +164,34 @@ def get_pain_level_color(level)
   when 6..7 then 'bg-orange-100 text-orange-800'
   else 'bg-red-100 text-red-800'
   end
+end
+
+def generate_triggers_html(triggers)
+  if triggers.empty?
+    return '<p class="text-gray-500 italic">No significant triggers identified yet. More data needed for analysis.</p>'
+  end
+
+  triggers.map do |trigger|
+    confidence_color = case trigger[:confidence]
+                       when 'high' then 'bg-red-100 text-red-800 border-red-200'
+                       when 'medium' then 'bg-yellow-100 text-yellow-800 border-yellow-200'
+                       else 'bg-blue-100 text-blue-800 border-blue-200'
+                       end
+
+    <<~HTML.chomp
+                <div class="border-l-4 #{confidence_color} p-4 mb-3 rounded-r-lg">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-800 mb-1">#{trigger[:name]}</h3>
+                            <p class="text-sm text-gray-600">#{trigger[:correlation]}</p>
+                        </div>
+                        <span class="ml-4 px-3 py-1 text-xs font-semibold rounded-full #{confidence_color}">
+                            #{trigger[:confidence].capitalize}
+                        </span>
+                    </div>
+                </div>
+    HTML
+  end.join("\n")
 end
 
 def generate_table_rows(data)
@@ -168,6 +279,13 @@ def update_html(summary, table_rows)
                 </div>
             </div>
 
+            <!-- Possible Triggers Section -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-4">Possible Triggers</h2>
+                <p class="text-sm text-gray-500 mb-4">Based on correlation analysis of your health data. Higher confidence indicates stronger patterns.</p>
+                #{generate_triggers_html(summary[:triggers])}
+            </div>
+
             <!-- Raw Data Table -->
             <div class="bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-2xl font-semibold text-gray-700 mb-4">Raw Data</h2>
@@ -227,6 +345,9 @@ begin
 
   puts "Updating HTML file..."
   update_html(summary, table_rows)
+
+  puts "Pushing to wordsanddeeds..."
+  %x(aws s3 cp index.html s3://wordsanddeeds.org/health-tracking.html)
 
   puts "Done!"
 rescue StandardError => e
