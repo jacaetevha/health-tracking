@@ -17,6 +17,7 @@ This system provides:
 - `check_entry_needed.rb` - Ruby script that checks if a new entry is needed
 - `run-health-tracking.sh` - Wrapper script that runs the tracking command
 - `setup-scheduling.sh` - Platform-specific scheduling setup (launchd/cron)
+- `update_dashboard.rb` - Script that writes an HTML file from headache info
 - `data/` - Directory where health tracking data is stored
 
 ## Setup
@@ -117,6 +118,7 @@ Example: `2025-11-14-0930.json`
     {"time": "02:30", "duration_minutes": 15},
     {"time": "05:00", "duration_minutes": 10}
   ],
+  "coffee": true,
   "meals": [
     {
       "type": "dinner",
