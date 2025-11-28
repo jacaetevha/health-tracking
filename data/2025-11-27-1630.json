@@ -1,0 +1,28 @@
+{
+  "timestamp": "2025-11-27T16:30:00-05:00",
+  "slot": "afternoon",
+  "coffee": true,
+  "meals": [
+    {
+      "type": "lunch",
+      "timestamp": "2025-11-27T12:45:00-05:00",
+      "foods": ["multigrain crackers", "uncured sausage", "cheddar cheese", "Expedition Stout (Bell's)"]
+    },
+    {
+      "type": "dinner",
+      "timestamp": "2025-11-27T17:30:00-05:00",
+      "foods": ["turkey", "homemade cranberry sauce", "sourdough stuffing", "fruit compote"]
+    },
+    {
+      "type": "snack",
+      "timestamp": "2025-11-27T20:00:00-05:00",
+      "foods": ["small piece of pumpkin pie", "small piece of berry pie"]
+    }
+  ],
+  "exercise": "none",
+  "stretching": "none",
+  "water_intake_adequate": true,
+  "pain_level": 7,
+  "headache_type": "tension headache",
+  "aura": "slight blurriness of vision"
+}
